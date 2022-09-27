@@ -91,14 +91,16 @@ measure_all
       """OPENQASM 2.0;
 include "qelib1.inc";
 
-qreg q[2];
-creg c[2];
+qreg q0[1];
+qreg q1[1];
+creg c0[1];
+creg c1[1];
 
 h q[0];
 cx q[0],q[1];
 
-measure q -> c;
-"""
+measure q0 -> c0;
+measure q1 -> c1;"""
       )
   }
 
@@ -147,8 +149,12 @@ measure_all
       """OPENQASM 2.0;
 include "qelib1.inc";
 
-qreg q[3];
-creg c[3];
+qreg q0[1];
+qreg q1[1];
+qreg q2[1];
+creg c0[1];
+creg c1[1];
+creg c2[1];
 
 h q[0];
 cu1(pi*0.5) q[1],q[0];
@@ -157,8 +163,9 @@ cu1(pi*0.25) q[2],q[0];
 cu1(pi*0.5) q[2],q[1];
 h q[2];
 
-measure q -> c;
-"""
+measure q0 -> c0;
+measure q1 -> c1;
+measure q2 -> c2;"""
     )
   }
 }

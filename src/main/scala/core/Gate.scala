@@ -5,57 +5,51 @@ class Wire(val name:String)(implicit c: Circuit){
 }
 
 abstract trait Gate {
-  def toCQASM(): String
-  def toOpenQASM(): String
 }
 
-class H(input: Wire) extends Gate{
-  override def toCQASM():String = s"H q[${input.name}]"
-  override def toOpenQASM():String = s"h ${input.name};"
+case class H private (input: Wire)(implicit c: Circuit) extends Gate{
 }
 object H {
-  def apply(input: Wire)(implicit c: Circuit):Unit = {
+  def apply(input: Wire)(implicit c: Circuit):H = {
     val h = new H(input)
     c.gates = c.gates:+h
+    h
   }
 }
-class X(input: Wire) extends Gate{
-  override def toCQASM():String = s"X q[${input.name}]"
-  override def toOpenQASM():String = s"x ${input.name};"
+case class X(input: Wire)(implicit c: Circuit) extends Gate{
 }
 object X {
-  def apply(input: Wire)(implicit c: Circuit):Unit = {
+  def apply(input: Wire)(implicit c: Circuit):X = {
     val x = new X(input)
     c.gates = c.gates:+x
+    x
   }
 }
-class CX(a0:Wire, a1:Wire) extends Gate{
-  override def toCQASM():String = s"CNOT q[${a0.name}],q[${a1.name}]"
-  override def toOpenQASM():String = s"cx ${a0.name}],${a1.name};"
+case class CX(a0:Wire, a1:Wire)(implicit c: Circuit) extends Gate{
 }
 object CX{
-  def apply(a0:Wire, a1:Wire)(implicit c:Circuit):Unit = {
+  def apply(a0:Wire, a1:Wire)(implicit c:Circuit):CX = {
     val cx = new CX(a0, a1)
     c.gates = c.gates:+cx
+    cx
   }
 }
-class CCX(control1: Wire, control2: Wire, target: Wire) extends Gate {
-  override def toCQASM():String = s"Toffoli q[${control1.name}], q[${control2.name}], q[${target.name}]"
-  override def toOpenQASM(): String = s"ccx ${control1.name}, ${control2.name}, ${target.name};"
+case class CCX(control1: Wire, control2: Wire, target: Wire)
+    (implicit c: Circuit)extends Gate {
 }
 object CCX {
-  def apply(control1: Wire, control2: Wire, target: Wire)(implicit c:Circuit): Unit = {
+  def apply(control1: Wire, control2: Wire, target: Wire)(implicit c:Circuit): CCX = {
     val ccx = new CCX(control1, control2, target)
     c.gates = c.gates:+ccx
+    ccx
   }
 }
-class Cu1(control: Wire, target: Wire, theta: Double) extends Gate{
-  override def toCQASM(): String = s"cu1(pi*$theta) q[${control.name}],q[${target.name}]"
-  override def toOpenQASM(): String = s"cu1(pi*$theta) ${control.name}, ${target.name};"
+case class Cu1(control: Wire, target: Wire, theta: Double)(implicit c: Circuit) extends Gate{
 }
 object Cu1 {
-  def apply(control: Wire, target: Wire, theta: Double)(implicit c: Circuit):Unit = {
+  def apply(control: Wire, target: Wire, theta: Double)(implicit c: Circuit):Cu1 = {
     val cu1 = new Cu1(control: Wire, target: Wire, theta: Double)
     c.gates = c.gates:+cu1
+    cu1
   }
 }
