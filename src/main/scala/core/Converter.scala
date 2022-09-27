@@ -13,10 +13,11 @@ object OpenQASM{
 include "qelib1.inc";
 
 """
-    val qubits = s"qreg q[${c.wires.size.toString}];\n"
-    val constants = s"creg c[${c.wires.size.toString}];\n\n"
-    val measure = "\nmeasure q -> c;\n"
-    head ++ qubits ++ constants ++ c.gates.foldLeft("")((a,b)=>a++ b.toOpenQASM() ++ "\n") ++ measure
+    val qubits = for (name <- c.wires) yield s"qreg ${name}[1];"
+    val constants = for(i <- 0 to c.wires.size - 1) yield s"creg c${i.toString}[1];"
+    val measure = for ((q,c) <- c.wires.zipWithIndex) yield s"measure ${q} -> c${c};"
+    head ++ {
+      qubits  ++ constants ++ Seq("") ++ c.gates.map(_.toOpenQASM()) ++ Seq("") ++ measure}.mkString("\n")
   }
 }
 

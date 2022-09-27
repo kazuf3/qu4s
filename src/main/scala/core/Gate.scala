@@ -11,7 +11,7 @@ abstract trait Gate {
 
 class H(input: Wire) extends Gate{
   override def toCQASM():String = s"H q[${input.name}]"
-  override def toOpenQASM():String = s"h q[${input.name}];"
+  override def toOpenQASM():String = s"h ${input.name};"
 }
 object H {
   def apply(input: Wire)(implicit c: Circuit):Unit = {
@@ -21,7 +21,7 @@ object H {
 }
 class X(input: Wire) extends Gate{
   override def toCQASM():String = s"X q[${input.name}]"
-  override def toOpenQASM():String = s"X q[${input.name}];"
+  override def toOpenQASM():String = s"x ${input.name};"
 }
 object X {
   def apply(input: Wire)(implicit c: Circuit):Unit = {
@@ -31,7 +31,7 @@ object X {
 }
 class CX(a0:Wire, a1:Wire) extends Gate{
   override def toCQASM():String = s"CNOT q[${a0.name}],q[${a1.name}]"
-  override def toOpenQASM():String = s"cx q[${a0.name}],q[${a1.name}];"
+  override def toOpenQASM():String = s"cx ${a0.name}],${a1.name};"
 }
 object CX{
   def apply(a0:Wire, a1:Wire)(implicit c:Circuit):Unit = {
@@ -40,8 +40,8 @@ object CX{
   }
 }
 class CCX(control1: Wire, control2: Wire, target: Wire) extends Gate {
-  override def toCQASM():String = s"Toffoli q[${control1.name}], q[${control2.name}], q[$target.name]"
-  override def toOpenQASM(): String = s"ccx q[${control1.name}], q[${control2.name}], q[$target.name];"
+  override def toCQASM():String = s"Toffoli q[${control1.name}], q[${control2.name}], q[${target.name}]"
+  override def toOpenQASM(): String = s"ccx ${control1.name}, ${control2.name}, ${target.name};"
 }
 object CCX {
   def apply(control1: Wire, control2: Wire, target: Wire)(implicit c:Circuit): Unit = {
@@ -51,7 +51,7 @@ object CCX {
 }
 class Cu1(control: Wire, target: Wire, theta: Double) extends Gate{
   override def toCQASM(): String = s"cu1(pi*$theta) q[${control.name}],q[${target.name}]"
-  override def toOpenQASM(): String = s"cu1(pi*$theta) q[${control.name}],q[${target.name}];"
+  override def toOpenQASM(): String = s"cu1(pi*$theta) ${control.name}, ${target.name};"
 }
 object Cu1 {
   def apply(control: Wire, target: Wire, theta: Double)(implicit c: Circuit):Unit = {
