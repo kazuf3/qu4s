@@ -1,12 +1,37 @@
 package com.qu4s.core
 
+/**
+  * cQASM converter object is to transpile Qu4s Circuit into cQASM as String.
+  * ==Usage==
+  *
+  * {{{
+  * implicit val c = new Circuit
+  * val q0 = new Wire("q0")
+  * H(q0)
+  * CQASM(c)
+  * }}}
+  */
 object CQASM{
+  /**
+    * Transpiles given Qu4s circuit into cQASM.
+    * @param c
+    * @return
+    */
   def apply(c: Circuit):String = {
     val qubits = s"qubits ${c.wires.size.toString}\n\n"
     val prep = s"prep_z q[0:${c.wires.size-1}]\n\n"
     qubits ++ prep ++ c.gates.foldLeft("")((a,b) => a++ b.toCQASM() ++ "\n") ++ "\nmeasure_all\n"
   }
+  /**
+    * GateWithOpenQASM provides verbal transpilation of each quantum gate.
+    * @param g
+    */
   implicit class GateWithOpenQASM(g:Gate){
+    /**
+      * The transpilation function which will be inserted as member method of [[com.qu4s.core.Gate]].
+      *
+      * @return Transpiled cQASM as String
+      */
     def toCQASM(): String = g match {
       case H(input) => s"H q[${input.name}]"
       case X(input) => s"Z q[${input.name}]"
@@ -16,6 +41,20 @@ object CQASM{
     }
   }
 }
+
+/**
+  * OpenQASM converter object is to transpile Qu4s Circuit into OpenQASM 2.0 as
+  * String. In order to run OpenQASM2.0 on IBM Quantum, it uses IBM Quantum
+  * default library "qelib1.inc".
+  * ==Usage==
+  *
+  * {{{
+  * implicit val c = new Circuit
+  * val q0 = new Wire("q0")
+  * H(q0)
+  * OpenQASM(c)
+  * }}}
+  */
 object OpenQASM{
   def apply(c: Circuit):String = {
     val head = """OPENQASM 2.0;
