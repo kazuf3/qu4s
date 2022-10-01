@@ -2,7 +2,7 @@ baseURL: http://kazuf3.github.io/qu4s/
 languageCode: en-us
 title: Qu4s
 theme: "PaperMod"
-
+publishDir: docs
 languages:
   en:
     languageName: "English"
