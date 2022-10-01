@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Qu4s</title>
+    <link>http://kazuf3.github.io/qu4s/</link>
+    <description>Recent content on Qu4s</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Sep 2022 16:11:54 -0700</lastBuildDate><atom:link href="http://kazuf3.github.io/qu4s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Qu4s</title>
+      <link>http://kazuf3.github.io/qu4s/posts/intro/</link>
+      <pubDate>Fri, 30 Sep 2022 16:11:54 -0700</pubDate>
+      
+      <guid>http://kazuf3.github.io/qu4s/posts/intro/</guid>
+      <description>What is Qu4s Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that users can use qisjob to post to IBM Quantum.
+Why Qu4s Many of quantum circuit design tools are written in Python. As an non-python application engineer, when we want to include quantum computation as part of the app, we have to use Python only for that purpose. Qu4s is written in Scala and serves well in most of JVM languages.</description>
+    </item>
+    
+    
+  </channel>
+</rss>

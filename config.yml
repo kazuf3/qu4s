@@ -1,0 +1,27 @@
+baseURL: http://kazuf3.github.io/qu4s/
+languageCode: en-us
+title: Qu4s
+theme: "PaperMod"
+
+languages:
+  en:
+    languageName: "English"
+    menu:
+      main:
+        - name: Archive
+          url: archives
+          weight: 5
+        - name: API
+          url: api/com/qu4s/core/index.html
+params:
+  homeInfoParams:
+    Title: "Qu4s"
+    Content: >-
+      Welcome to Qu4s.
+
+      - **Qu4s** is a simple Scala library for quantum circuit designing.
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/kazuf3/qu4s"
+

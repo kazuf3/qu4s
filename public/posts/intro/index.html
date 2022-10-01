@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Introduction to Qu4s | Qu4s</title>
+<meta name="keywords" content="">
+<meta name="description" content="What is Qu4s Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that users can use qisjob to post to IBM Quantum.
+Why Qu4s Many of quantum circuit design tools are written in Python. As an non-python application engineer, when we want to include quantum computation as part of the app, we have to use Python only for that purpose. Qu4s is written in Scala and serves well in most of JVM languages.">
+<meta name="author" content="">
+<link rel="canonical" href="http://kazuf3.github.io/qu4s/posts/intro/">
+<link crossorigin="anonymous" href="/qu4s/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/qu4s/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="http://kazuf3.github.io/qu4s/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://kazuf3.github.io/qu4s/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://kazuf3.github.io/qu4s/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://kazuf3.github.io/qu4s/apple-touch-icon.png">
+<link rel="mask-icon" href="http://kazuf3.github.io/qu4s/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Introduction to Qu4s" />
+<meta property="og:description" content="What is Qu4s Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that users can use qisjob to post to IBM Quantum.
+Why Qu4s Many of quantum circuit design tools are written in Python. As an non-python application engineer, when we want to include quantum computation as part of the app, we have to use Python only for that purpose. Qu4s is written in Scala and serves well in most of JVM languages." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://kazuf3.github.io/qu4s/posts/intro/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-30T16:11:54-07:00" />
+<meta property="article:modified_time" content="2022-09-30T16:11:54-07:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Qu4s"/>
+<meta name="twitter:description" content="What is Qu4s Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that users can use qisjob to post to IBM Quantum.
+Why Qu4s Many of quantum circuit design tools are written in Python. As an non-python application engineer, when we want to include quantum computation as part of the app, we have to use Python only for that purpose. Qu4s is written in Scala and serves well in most of JVM languages."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://kazuf3.github.io/qu4s/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Introduction to Qu4s",
+      "item": "http://kazuf3.github.io/qu4s/posts/intro/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Introduction to Qu4s",
+  "name": "Introduction to Qu4s",
+  "description": "What is Qu4s Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that users can use qisjob to post to IBM Quantum.\nWhy Qu4s Many of quantum circuit design tools are written in Python. As an non-python application engineer, when we want to include quantum computation as part of the app, we have to use Python only for that purpose. Qu4s is written in Scala and serves well in most of JVM languages.",
+  "keywords": [
+    
+  ],
+  "articleBody": "What is Qu4s Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that users can use qisjob to post to IBM Quantum.\nWhy Qu4s Many of quantum circuit design tools are written in Python. As an non-python application engineer, when we want to include quantum computation as part of the app, we have to use Python only for that purpose. Qu4s is written in Scala and serves well in most of JVM languages. An app in Scala can modify the quantum circuit during program execution.\nExample The following example can be also found here.\npackage example import com.qu4s.core._ object Grover2 { implicit val c = new Circuit val q0 = new Wire(\"q0\") val q1 = new Wire(\"q1\") val q2 = new Wire(\"q2\") // init H(q0) H(q1) H(q2) // grover(2) // oracle X(q0) H(q1) CCX(q0, q1, q2) X(q0) H(q2) // diffusion H(q0) H(q1) H(q2) X(q0) X(q1) X(q2) H(q2) CCX(q0, q1, q2) H(q2) X(q0) X(q1) X(q2) H(q0) H(q1) H(q2) } object GenerateOpenQASM extends App { Console.println(OpenQASM(Grover2.c)) } object WriteOpenQASM extends App { import java.io.{PrintWriter,File} args.lift(1) match{ case None =\u003e Console.println(\"Type file name as args\") case Some(a) =\u003e { val pw = new PrintWriter(new File(args(1))) pw.write(OpenQASM(Grover2.c)) pw.close() } } } ",
+  "wordCount" : "199",
+  "inLanguage": "en",
+  "datePublished": "2022-09-30T16:11:54-07:00",
+  "dateModified": "2022-09-30T16:11:54-07:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://kazuf3.github.io/qu4s/posts/intro/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Qu4s",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://kazuf3.github.io/qu4s/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://kazuf3.github.io/qu4s/" accesskey="h" title="Qu4s (Alt + H)">Qu4s</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://kazuf3.github.io/qu4s/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://kazuf3.github.io/qu4s/api/com/qu4s/core/index.html" title="API">
+                    <span>API</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Introduction to Qu4s
+    </h1>
+    <div class="post-meta"><span title='2022-09-30 16:11:54 -0700 PDT'>September 30, 2022</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="what-is-qu4s">What is Qu4s<a hidden class="anchor" aria-hidden="true" href="#what-is-qu4s">#</a></h1>
+<p>Qu4s is quantum circuit design library which generates OpenQASM 2.0, so that
+users can use qisjob to post to IBM Quantum.</p>
+<h1 id="why-qu4s">Why Qu4s<a hidden class="anchor" aria-hidden="true" href="#why-qu4s">#</a></h1>
+<p>Many of quantum circuit design tools are written in Python. As an non-python
+application engineer, when we want to include quantum computation as part of the
+app, we have to use Python only for that purpose. Qu4s is written in Scala and
+serves well in most of JVM languages. An app in Scala can modify the quantum
+circuit during program execution.</p>
+<h1 id="example">Example<a hidden class="anchor" aria-hidden="true" href="#example">#</a></h1>
+<p>The following example can be also found <a href="https://github.com/kazuf3/qu4s/blob/master/src/main/scala/example/generate_openqasm.scala">here</a>.</p>
+<pre tabindex="0"><code>package example
+
+import com.qu4s.core._
+
+object Grover2 {
+  implicit val c = new Circuit
+
+  val q0 = new Wire(&#34;q0&#34;)
+  val q1 = new Wire(&#34;q1&#34;)
+  val q2 = new Wire(&#34;q2&#34;)
+
+  // init
+  H(q0)
+  H(q1)
+  H(q2)
+
+  // grover(2)
+  // oracle
+  X(q0)
+  H(q1)
+  CCX(q0, q1, q2)
+  X(q0)
+  H(q2)
+
+  // diffusion
+  H(q0)
+  H(q1)
+  H(q2)
+  X(q0)
+  X(q1)
+  X(q2)
+  H(q2)
+
+  CCX(q0, q1, q2)
+  H(q2)
+  X(q0)
+  X(q1)
+  X(q2)
+  H(q0)
+  H(q1)
+  H(q2)
+
+}
+object GenerateOpenQASM extends App {
+  Console.println(OpenQASM(Grover2.c))
+}
+
+object WriteOpenQASM extends App {
+  import java.io.{PrintWriter,File}
+  args.lift(1) match{
+    case None =&gt; Console.println(&#34;Type file name as args&#34;)
+    case Some(a) =&gt; {
+      val pw = new PrintWriter(new File(args(1)))
+      pw.write(OpenQASM(Grover2.c))
+      pw.close()
+    }
+  }
+}
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="http://kazuf3.github.io/qu4s/">Qu4s</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
