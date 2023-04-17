@@ -46,8 +46,8 @@ object GenerateOpenQASM extends App {
 }
 
 object WriteOpenQASM extends App {
-  import java.io.{PrintWriter,File}
-  args.lift(1) match{
+  import java.io.{PrintWriter, File}
+  args.lift(1) match {
     case None => Console.println("Type file name as args")
     case Some(a) => {
       val pw = new PrintWriter(new File(args(1)))

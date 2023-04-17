@@ -69,7 +69,7 @@ class CircuitGenerationTestSpec extends AnyFlatSpec with Matchers {
     CX(q0, q1)
 
     CQASM(c) shouldEqual
-    """qubits 2
+      """qubits 2
 
 prep_z q[0:1]
 
@@ -80,14 +80,14 @@ measure_all
 """
   }
   "H gate" should "generate right OpenQASM circuit" in {
-  implicit val c = new Circuit
+    implicit val c = new Circuit
     val q0 = new Wire("0")
     val q1 = new Wire("1")
 
     H(q0)
     CX(q0, q1)
 
-    OpenQASM(c) shouldEqual(
+    OpenQASM(c) shouldEqual (
       """OPENQASM 2.0;
 include "qelib1.inc";
 
@@ -101,7 +101,7 @@ cx q[0],q[1];
 
 measure q0 -> c0;
 measure q1 -> c1;"""
-      )
+    )
   }
 
   "QFT" should "generate right cQASM QFT circuit" in {
@@ -110,15 +110,15 @@ measure q1 -> c1;"""
     val q1 = new Wire("1")
     val q2 = new Wire("2")
 
-    H (q0)
-    Cu1 (q1, q0, 0.5)
+    H(q0)
+    Cu1(q1, q0, 0.5)
     H(q1)
-    Cu1 (q2, q0, 0.25)
-    Cu1 (q2, q1, 0.5)
+    Cu1(q2, q0, 0.25)
+    Cu1(q2, q1, 0.5)
     H(q2)
 
     CQASM(c) shouldEqual
-    """qubits 3
+      """qubits 3
 
 prep_z q[0:2]
 
@@ -138,14 +138,14 @@ measure_all
     val q1 = new Wire("1")
     val q2 = new Wire("2")
 
-    H (q0)
-    Cu1 (q1, q0, 0.5)
-    H (q1)
-    Cu1 (q2, q0, 0.25)
-    Cu1 (q2, q1, 0.5)
-    H (q2)
+    H(q0)
+    Cu1(q1, q0, 0.5)
+    H(q1)
+    Cu1(q2, q0, 0.25)
+    Cu1(q2, q1, 0.5)
+    H(q2)
 
-    OpenQASM(c) shouldEqual(
+    OpenQASM(c) shouldEqual (
       """OPENQASM 2.0;
 include "qelib1.inc";
 
